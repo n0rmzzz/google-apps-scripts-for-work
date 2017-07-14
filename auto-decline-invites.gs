@@ -39,10 +39,9 @@ function processEventList(eventList) {
     if (outOfOffices.length > 0) {
       Logger.log("Found an out of office conflict for: " + title);
       if (status == invitedStatus || status == maybeStatus) {
-        if (event.getGuestList().length > 20) {
-          Logger.log("Guest list is too big, not likely to expect a response from me.");
-        } else if (!event.guestsCanSeeGuests()) {
-          Logger.log("Guest list is hidden, not likely to expect a response from me.");
+        if (event.getGuestList().length > 20 || !event.guestsCanSeeGuests()) {
+          Logger.log("Not likely to expect a response from me.");
+          MailApp.sendEmail(myEmail, "Re: Invitation: " + title, "", {htmlBody: "Rejected an event from " + creators + " because I was out of office."});
         } else {
           var body =
               "Hi,<br><br>"+
@@ -55,7 +54,7 @@ function processEventList(eventList) {
       } else if (status == acceptedStatus) {
         Logger.log("Rejecting " + title + " silently");
         event.setMyStatus(rejectedStatus);
-        MailApp.sendEmail(myEmail, "Re: Invitation: " + title, "", {htmlBody: "Rejected an event from " + creators + " because I was out of office."});
+        MailApp.sendEmail(myEmail, "Re: Invitation: " + title, "", {htmlBody: "Rejected an already accepted event from " + creators + " because I was out of office."});
       }
     }
   }
