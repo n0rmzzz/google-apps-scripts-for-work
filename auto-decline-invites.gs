@@ -1,4 +1,4 @@
-// Sync your calendar and decline events you are invited for while you are out of office.
+// Scans your calendar and declines events you are invited for while you are out of office.
 
 var invited = "INVITED";
 var accepted = "YES";
