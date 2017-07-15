@@ -7,10 +7,9 @@ var labelEmailsToReadLater = 'HipChat Ping to Read'; // <<<<<<<< Label for those
 var now = new Date();
 var start = new Date(now.getTime() - 5 * 60 * 1000);
 var end = new Date(now.getTime() + 5 * 60 * 1000);
-var timesheetCalendar = CalendarApp.getCalendarsById();
+var timesheetCalendar = CalendarApp.getCalendarByIdmyEmail();
 var outOfOfficeEvents = timesheetCalendar.getEvents(now, end, {search: 'Out of Office'});
 var outOfOffice = outOfOfficeEvents.length > 0;
-  
 
 function autoRespondHipChatEmails() {
   var threads = GmailApp.search('label:"' + labelNewEmails + '" label:unread');
