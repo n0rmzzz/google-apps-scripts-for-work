@@ -46,7 +46,7 @@ function processEventList(eventList) {
           var body =
               "Hi,<br><br>"+
                 "You tried to book my time between <b>" + startTime + "</b> and <b>" + endTime + "</b>. " +
-                  "Unfortunately I will be out of office at that time.<br><br>Regards,<br>Norman<br><br>" +
+                  "Unfortunately I will be out of office at that time.<br><br>Regards,<br>" + myName + "<br><br>" +
                     "P.S. This email is automatically generated, please let me know if you have received it by error.";
           MailApp.sendEmail(creators, "Re: Invitation: " + title, "", {htmlBody: body});
         }
